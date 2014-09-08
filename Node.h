@@ -21,17 +21,27 @@ class Link;
 // the actual class
 
 class Node {
+	enum node_type {
+		BIAS = 0, NEURON = 1
+	};
 public:
 	Node();
+	Node(double transfer_function(double));
 	virtual ~Node();
 
-	double transfer_function(double);
+	double (*transfer_function)(double);
+
+	node_type type;
+	double incoming_activation_sum;
+	double activation;
 
 	std::vector<Link*> incoming;
 	std::vector<Link*> outgoing;
 
-	void create_outgoing_link(Node* target);
-};
+	Link* create_outgoing_link(Node* target);
+	void do_timestep();
+}
+;
 
 } /* namespace NEAT_Expansion */
 

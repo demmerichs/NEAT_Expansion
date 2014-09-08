@@ -11,6 +11,7 @@
 #define LINK_H_
 //==============================
 // included dependencies
+#include<queue>
 //==============================
 namespace NEAT_Expansion {
 //==============================
@@ -28,6 +29,8 @@ public:
 
 	Node* in_node;
 	Node* out_node;
+
+	std::queue<double> sending_queue;
 };
 
 } /* namespace NEAT_Expansion */
