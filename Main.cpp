@@ -23,7 +23,8 @@ int main() {
 	Node* bias = new Node();
 	Link* forward = input->create_outgoing_link(output);
 	Link* recurrent = output->create_outgoing_link(output);
-	forward->weight = recurrent->weight = 2.0;
+	forward->set_weight(2);
+	recurrent->set_weight(2);
 	bias->create_outgoing_link(output);
 
 	for (int i = 0; i < 10; i++) {
@@ -39,10 +40,6 @@ int main() {
 		input->do_timestep();
 		output->do_timestep();
 		bias->do_timestep();
-	}
-	while (!forward->sending_queue.empty()) {
-		std::cout << forward->sending_queue.front() << std::endl;
-		forward->sending_queue.pop();
 	}
 }
 

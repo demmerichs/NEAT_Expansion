@@ -21,8 +21,6 @@ class Node;
 // the actual class
 
 class Link {
-public:
-	Link(Node*, Node*, double);
 	virtual ~Link();
 
 	double weight;
@@ -31,6 +29,12 @@ public:
 	Node* out_node;
 
 	std::queue<double> sending_queue;
+
+public:
+	Link(Node*, Node*, double);
+	void set_weight(double);
+	void send();
+	void receive();
 };
 
 } /* namespace NEAT_Expansion */

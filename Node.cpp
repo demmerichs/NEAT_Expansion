@@ -41,14 +41,13 @@ void Node::do_timestep() {
 		this->incoming_activation_sum = 0;
 		for (linkit = this->incoming.begin(); linkit != this->incoming.end();
 				linkit++) {
-			this->incoming_activation_sum += (*linkit)->sending_queue.front();
-			(*linkit)->sending_queue.pop();
+			(*linkit)->receive();
 		}
 		activation = transfer_function(incoming_activation_sum);
 	}
 	for (linkit = this->outgoing.begin(); linkit != this->outgoing.end();
 			linkit++)
-		(*linkit)->sending_queue.push(activation);
+		(*linkit)->send();
 }
 
 } /* namespace NEAT_Expansion */
